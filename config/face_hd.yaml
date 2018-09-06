@@ -1,0 +1,91 @@
+exp_setting:
+  exp_name: 'face_hd'                         # Expriment title, log/checkpoint files will be named after this
+  checkpoint_dir: 'checkpoint/'               # Folder for model checkpoints
+  log_dir: 'log/'                             # Folder for training logs
+  data_root: 'data/'
+  seed: 1
+  img_size: 64
+  img_depth: 3
+  domain_a: 'photo'
+  doamin_b: 'sketch'
+  doamin_c: 'paint'
+
+model:
+  vae:
+    encoder: [['conv', 64,4,2,1,'bn','LeakyReLU'],
+              ['conv', 128,4,2,1,'bn','LeakyReLU'],
+              ['conv', 256,4,2,1,'bn','LeakyReLU'],
+              ['conv', 512,4,2,1,'bn','LeakyReLU'],
+              ['conv', 1024,4,2,1,'bn','LeakyReLU'],
+              ['conv', 1024,4,2,1,  '','']
+             ]
+    code_dim: 3
+    decoder: [['conv', 1024,4,2,1,'bn','LeakyReLU',True],
+              ['conv', 512,4,2,1,'bn','LeakyReLU',False],
+              ['conv', 256,4,2,1,'bn','LeakyReLU',False],
+              ['conv', 128,4,2,1,'bn','LeakyReLU',False],
+              ['conv', 64,4,2,1,'bn','LeakyReLU',False],
+              ['conv',  3,4,2,1,  '','Tanh',False]
+             ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+  D_feat:
+    dnn: [['fc', 512, '', 'LeakyReLU',0],
+          ['fc', 256, '', 'LeakyReLU',0],
+          ['fc', 128, '', 'LeakyReLU',0],
+          ['fc', 64, '', 'LeakyReLU',0],
+          ['fc', 3, '', '', 0]
+         ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+
+  D_pix:
+    dnn: [['conv', 16, 4,2,1,'','LeakyReLU'],
+          ['conv', 32,4,2,1,'','LeakyReLU'],
+          ['conv', 64,4,2,1,'','LeakyReLU'],
+          ['conv', 128,4,2,1,'','LeakyReLU'],
+          ['conv', 256,4,2,1,'','LeakyReLU'],
+          ['fc', 512, '', 'LeakyReLU',0],
+          ['fc', [1,3], '', '',0]
+         ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+
+trainer:
+  total_step: 250000
+  batch_size: 32
+
+  lambda:
+    pix_recon:
+      init:  100
+      final: 1
+      step:  1000
+    kl:
+      init:  0.000001
+      final: 0.000001
+      step:  1
+    feat_domain:
+      init:  0
+      final: 1
+      step:  10000
+    gp:
+      init: 100
+      final: 100
+      step: 1
+    pix_adv:
+      init: 0
+      final: 0.000001
+      step: 10000
+    pix_clf:
+      init: 0
+      final: 0.000001
+      step: 10000
+
+  verbose_step: 500
+  plot_step: 5000
+  checkpoint_step: 5000
+  save_log: True
+  show_fig: True
+  save_fig: True
+  save_checkpoint: True
+  save_best_only: False
