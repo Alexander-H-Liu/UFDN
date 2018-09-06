@@ -17,6 +17,7 @@ Please feel free to use/modify them, any bug report or improvement suggestion wi
 ## Application
 
 -   Image-to-Image translation / Cross-domain image generation
+
     With domain invariant representation, domain vector and unified decoder, UFDN is able to perform (a) continuious image translation across different domains and/or attributes at interest (b) image generation across different domains.
 ![](log/translation.jpg)
 
@@ -59,7 +60,7 @@ Pretrained model is also availible [here](https://drive.google.com/open?id=1MoMW
 
 To train UFDN, make sure all requirements are satisfied and run
 
-```python3 train_face.py <config file path>```
+```python3 train_face.py <path/to/config>```
 
 See [example config](config/face_hd.yaml) for more options avialible. Please refer to the paper's supplementary for config used in the main paper.
 
