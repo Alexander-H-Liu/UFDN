@@ -5,7 +5,7 @@
 
 ![](log/idea.png)
 
-This is a PyTorch implementation of my paper [A Unified Feature Disentangler for Multi-Domain Image Translation and Manipulation](https://arxiv.org/abs/1508.01211v2) (UFDN)  accepted by NIPS 2018.
+This is a PyTorch implementation of my paper [A Unified Feature Disentangler for Multi-Domain Image Translation and Manipulation](https://arxiv.org/abs/1809.01361) (UFDN)  accepted by NIPS 2018.
 Please feel free to use/modify them, any bug report or improvement suggestion will be appreciated.
 
 ## Model
