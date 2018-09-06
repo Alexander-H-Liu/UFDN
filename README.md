@@ -64,6 +64,10 @@ To train UFDN, make sure all requirements are satisfied and run
 
 See [example config](config/face_hd.yaml) for more options avialible. Please refer to the paper's supplementary for config used in the main paper.
 
+#### Training log & inference
+
+To see learning curve and some translation/generation result, use tensorboard to access training log (location specified in config). E.g. ```tensorboard --logdir=log/```
+
 ## Notes
 - face_hd is the config for demo (image-to-image translation) only.
 - Please refer to the paper for more experiment config/settings, including image generation & UDA.
