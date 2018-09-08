@@ -76,7 +76,7 @@ To see learning curve and some translation/generation result, use tensorboard to
 Please cite the article:
 
 "A Unified Feature Disentangler for Multi-Domain Image Translation and Manipulation"
-Alexander Liu, Yen-Chen Liu, Yu-Ying Yeh, Yu-Chiang Frank Wang, NIPS'18
+Alexander H. Liu, Yen-Cheng Liu, Yu-Ying Yeh, Yu-Chiang Frank Wang, NIPS'18
 
 Please also cite the article if you find the face dataset helpful:
 
