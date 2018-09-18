@@ -1,0 +1,73 @@
+exp_setting:
+  exp_name: 'uda_example'                     # Expriment title, log/checkpoint files will be named after this
+  checkpoint_dir: 'checkpoint/'               # Folder for model checkpoints
+  log_dir: 'log/'                             # Folder for training logs
+  data_root: 'data/'
+  seed: 123456
+  img_size: 32
+  img_depth: 3
+  source_domain: 'svhn'
+  target_domain: 'mnist'
+  shuffle_source: False                       # Notice that here using # of images from SVHN equal as MNIST
+  shuffle_target: True 
+  
+
+model:
+  vae:
+    encoder: [['conv', 128,4,2,1,'bn','LeakyReLU'],
+              ['conv', 256,4,2,1,'bn','LeakyReLU'],
+              ['conv', 512,4,2,1,'bn','LeakyReLU'],
+              ['conv', 1024,4,2,1,'bn','LeakyReLU'],
+              ['conv', 2048,4,2,1,  '','']
+             ]
+    code_dim: 2
+    decoder: [['conv', 1024,4,2,1,'bn','LeakyReLU',True],
+              ['conv', 512,4,2,1,'bn','LeakyReLU',False],
+              ['conv', 256,4,2,1,'bn','LeakyReLU',False],
+              ['conv', 128,4,2,1,'bn','LeakyReLU',False],
+              ['conv',  3,4,2,1,  '','Tanh',False]
+             ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+  D_feat:
+    dnn: [['fc', 1024, '', 'LeakyReLU',0],
+          ['fc', 256, '', 'LeakyReLU',0],
+          ['fc', 2, '', '', 0]
+         ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+
+  D_digit:
+    dnn: [['fc', 10, '', '',0]
+         ]
+    lr: 0.0001
+    betas: [0.5,0.999]
+
+trainer:
+  total_step: 500000
+  batch_size: 16
+
+  lambda:
+    pix_recon:
+      init:  1
+      final: 1
+      step:  1
+    kl:
+      init:  0.0000001
+      final: 0.0000001
+      step:  1
+    feat_domain:
+      init:  0.1
+      final: 0.1
+      step:  1
+
+  data_augment: True        # Augmentation : pixelwise flipping value
+  verbose_step: 100
+  plot_step: 500
+  checkpoint_step: 5000
+  save_log: True
+  show_fig: True
+  save_fig: True
+  save_checkpoint: True
+  save_best_only: True
+

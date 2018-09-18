@@ -122,6 +122,7 @@ domain_code = np.concatenate([np.repeat(np.array([[*([1]*int(code_dim/3)),
 
 domain_code = torch.FloatTensor(domain_code)
 
+### Messy, torch.randperm will be better approach
 # forword translation code : A->B->C->A
 forword_code = np.concatenate([np.repeat(np.array([[*([0]*int(code_dim/3)),
                                                    *([1]*int(code_dim/3)),
@@ -272,8 +273,9 @@ while global_step < trainer_conf['total_step']:
             
         # update lambda
         for k in loss_lambda.keys():
-            if loss_lambda[k]['cur'] < loss_lambda[k]['final']:
-                loss_lambda[k]['cur'] += loss_lambda[k]['inc'] 
+            if loss_lambda[k]['inc']*loss_lambda[k]['cur'] < loss_lambda[k]['inc']*loss_lambda[k]['final']:
+                loss_lambda[k]['cur'] += loss_lambda[k]['inc']
+                
 
 
         if global_step%trainer_conf['checkpoint_step']==0 and trainer_conf['save_checkpoint'] and not trainer_conf['save_best_only']:
@@ -295,7 +297,7 @@ while global_step < trainer_conf['total_step']:
             fig2 = (tmp+1)/2
             
             if trainer_conf['save_fig']:
-                writer.add_image('interpolate', fig1, global_step)
-                writer.add_image('random generate', fig2, global_step)
+                writer.add_image('interpolate', torch.FloatTensor(np.transpose(fig1,(2,0,1))), global_step)
+                writer.add_image('random generate', torch.FloatTensor(np.transpose(fig2,(2,0,1))), global_step)
 
             vae.train()

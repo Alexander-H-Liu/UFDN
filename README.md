@@ -18,14 +18,16 @@ Please feel free to use/modify them, any bug report or improvement suggestion wi
 
 -   Image-to-Image translation / Cross-domain image generation
 
-    With domain invariant representation, domain vector and unified decoder, UFDN is able to perform (a) continuious image translation across different domains and/or attributes at interest (b) image generation across different domains.
-![](log/translation.jpg)
+    With domain invariant representation, domain vector and unified decoder, UFDN is able to perform (a) continuous image translation across different domains and/or attributes at interest (b) image generation across different domains. Pre-trained model & dataset are availible, see next section.
+    ![](log/translation.jpg)
 
 -   Unsupervised domain adaption (UDA)
 
-    UDA can be addressed via the domain invariant representation learned by UFDN. As reported in the paper, UFDN's UDA performance on digit dataset is the current state-of-the-art. The figure visualizes the domain invariant representation learned by our UFDN, colored w.r.t. (a) dataset (b) digit.
-![](log/uda_visualize.jpg)
+    UDA can be addressed via the domain invariant representation learned by UFDN. As reported in the paper, UFDN's UDA performance on digit dataset is the current state-of-the-art. The figure visualizes the domain invariant representation learned by our UFDN, colored w.r.t. (a) dataset (b) digit. 
 
+    ![](log/uda_visualize.jpg)
+    
+    Model trained on MNIST and tested on SVHN is availible [here](https://drive.google.com/drive/folders/1k7rEHOS-EypCAFEIBygo-_YRaupYj4nh?usp=sharing), it's logger is also availible [here](https://drive.google.com/file/d/1EULdjHuE-Ac_8r55qG-37VK5nnwyXoee/view?usp=sharing). This model was trained with the [example config](config/uda_example.yaml) identical to the paper, recording accuracy __0.9579__ on SVHN testing setting.
 
 
 
@@ -53,8 +55,8 @@ Please feel free to use/modify them, any bug report or improvement suggestion wi
 
 #### Download pretrained model & dataset
 
-Dataset is availible [here](https://drive.google.com/file/d/1_XmbzBLC1dELhDTEMZShiMohVJaHaWaN/view?usp=sharing). To run the code, please download and place it under ```data/```.
-Pretrained model is also availible [here](https://drive.google.com/open?id=1MoMWN8oFZVsSbRjRDlw-dMyHfHR9JjHC), you can download it if you'd like to try.
+Dataset is availible [here](https://drive.google.com/drive/folders/1CpG_BGueKKrlPleiQzbuaCnXXjIeeQnF?usp=sharing). To run the code, please download and place it under ```data/```.
+Pretrained model is also availible [here](https://drive.google.com/file/d/1MoMWN8oFZVsSbRjRDlw-dMyHfHR9JjHC/view?usp=sharing), you can download it if you'd like to try.
 
 #### Train your own model
 
