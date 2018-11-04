@@ -55,7 +55,8 @@ Please feel free to use/modify them, any bug report or improvement suggestion wi
 
 #### Download pretrained model & dataset
 
-Dataset is available [here](https://drive.google.com/drive/folders/1CpG_BGueKKrlPleiQzbuaCnXXjIeeQnF?usp=sharing). To run the code, please download and place it under ```data/```.
+~~~Dataset is available here. To run the code, please download and place it under ```data/```.~~~
+Human face dataset is currently unavailible due to  [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)'s prohibition of futher publication, we will make it availible if we get the premission in the future.
 Pretrained model is also available [here](https://drive.google.com/file/d/1MoMWN8oFZVsSbRjRDlw-dMyHfHR9JjHC/view?usp=sharing), you can download it if you'd like to try.
 
 #### Train your own model
