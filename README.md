@@ -73,7 +73,7 @@ To see learning curve and some translation/generation result, use tensorboard to
 
 ## Notes
 - face_hd is the config for demo (image-to-image translation) only.
-- Please refer to the paper for more experiment config/settings, including image generation & UDA.
+- For UDA reproducibility, please refer to the [supplemental](https://papers.nips.cc/paper/7525-a-unified-feature-disentangler-for-multi-domain-image-translation-and-manipulation) of main paper and also [issue #6](https://github.com/Alexander-H-Liu/UFDN/issues/6) for more experiment config/settings.
 
 ## Reference
 Please cite the article:
